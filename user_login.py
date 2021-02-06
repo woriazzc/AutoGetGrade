@@ -113,7 +113,9 @@ def Login():
 	username = "your username"
 	password = "your password"
 	feedback = ECNULogin(username, password, ifEnterPassword=False)
-	while feedback != 0:
+	t = 5
+	while feedback != 0 and t > 0:
+		t -= 1
 		if feedback == 1:
 			print('验证码识别错误，请重试。')
 			feedback = ECNULogin(username, password, ifEnterPassword=False)
@@ -127,6 +129,7 @@ def Login():
 				feedback = ECNULogin(ifEnterPassword=True)
 			else:
 				print('无法连接。')
+	return feedback
 
 
 def getGrade():
